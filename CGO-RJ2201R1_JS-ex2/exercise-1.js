@@ -186,38 +186,56 @@ console.log(giaiThua(6));
 // - grade trung bình dạng số, biết các giá trị tương ứng của từng grade như sau: A=1, B=2, ... , F=5
 // *YOUR CODE HERRE *
 // Do có A B C D E F nên em để giá trị tương ứng với 1 2 3 4 5 6 (khác với đề yêu cầu 1 - 5)
-const convertNumberToString = (number) =>
-  number === 1
-    ? 'A'
-    : number === 2
-    ? 'B'
-    : number === 3
-    ? 'C'
-    : number === 4
-    ? 'D'
-    : number === 5
-    ? 'E'
-    : 'F';
+// const convertNumberToString = (number) =>
+//   number === 1
+//     ? 'A'
+//     : number === 2
+//     ? 'B'
+//     : number === 3
+//     ? 'C'
+//     : number === 4
+//     ? 'D'
+//     : number === 5
+//     ? 'E'
+//     : 'F';
+
+const convert = (value, type) => {
+  if (type && type === 1) {
+    return value === 1
+      ? "A"
+      : value === 2
+      ? "B"
+      : value === 3
+      ? "C"
+      : value === 4
+      ? "D"
+      : value === 5
+      ? "E"
+      : "F";
+  }else{
+    return value === "A"
+      ? 1
+      : value === "B"
+      ? 2
+      : value === "C"
+      ? 3
+      : value === "D"
+      ? 4
+      : value === "E"
+      ? 5
+      : 6
+  }
+};
 
 const compareGrade = () => {
   const grade = traineeIterator.map((item) =>
-    item.grade === "A"
-      ? 1
-      : item.grade === "B"
-      ? 2
-      : item.grade === "C"
-      ? 3
-      : item.grade === "D"
-      ? 4
-      : item.grade === "E"
-      ? 5
-      : 6
+    convert(item.grade,0)
   );
 
   grade.sort((a, b) => b - a);
   return [
-    convertNumberToString(grade[0]),
-    convertNumberToString(grade[grade.length - 1]),
+    convert(grade[0],1),
+    convert(grade[grade.length - 1],1),
     (grade[0] + grade[grade.length - 1]) / 2,
   ];
 };
