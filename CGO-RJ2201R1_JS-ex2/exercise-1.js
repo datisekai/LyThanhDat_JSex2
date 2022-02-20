@@ -162,7 +162,10 @@ const showTraineeF = (traineeIterator) =>
 
 //9. Sử dụng reduce, hãy tạo ra 1 string cấu thành từ điểm số của các thành viên trong mảng đã cho
 // *YOUR CODE HERRE *
-const stringGrade = traineeIterator.reduce((result, value) => result + value.grade, "");
+const stringGrade = traineeIterator.reduce(
+  (result, value) => result + value.grade,
+  ""
+);
 console.log(stringGrade);
 
 //10. (optional) Sử dụng reduce, hãy tạo ra 1 hàm tính được giai thừa của 1 số đầu vào. Ex: input 6 => 1*2*3*4*5*6 = 720
@@ -182,6 +185,20 @@ console.log(giaiThua(6));
 // - grade cao nhất
 // - grade trung bình dạng số, biết các giá trị tương ứng của từng grade như sau: A=1, B=2, ... , F=5
 // *YOUR CODE HERRE *
+// Do có A B C D E F nên em để giá trị tương ứng với 1 2 3 4 5 6 (khác với đề yêu cầu 1 - 5)
+const convertNumberToString = (number) =>
+  number === 1
+    ? 'A'
+    : number === 2
+    ? 'B'
+    : number === 3
+    ? 'C'
+    : number === 4
+    ? 'D'
+    : number === 5
+    ? 'E'
+    : 'F';
+
 const compareGrade = () => {
   const grade = traineeIterator.map((item) =>
     item.grade === "A"
@@ -196,9 +213,13 @@ const compareGrade = () => {
       ? 5
       : 6
   );
-  
-  grade.sort((a,b) => b - a)
-  return [grade[0],grade[grade.length - 1],(grade[0] + grade[grade.length - 1]) / 2]
+
+  grade.sort((a, b) => b - a);
+  return [
+    convertNumberToString(grade[0]),
+    convertNumberToString(grade[grade.length - 1]),
+    (grade[0] + grade[grade.length - 1]) / 2,
+  ];
 };
 
 console.log(compareGrade());
